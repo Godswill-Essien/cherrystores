@@ -223,10 +223,10 @@ export default function Singleproduct() {
                     </div>
 
 
-                    {/* Quality */}
+                    {/* Quantty */}
                     <div className='flex flex-col gap-2'>
 
-                        <p className='text-zinc-600 font-semibold'>Quality</p>
+                        <p className='text-zinc-600 font-semibold'>Quantity</p>
 
                         <div className='flex  gap-5'>
                             {/* additions */}
