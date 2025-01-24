@@ -8,7 +8,7 @@ export default function page() {
 
     <div>
       <Singleproduct />
-      <ProductImages/>
+      {/* <ProductImages/> */}
     </div>
   )
 }
