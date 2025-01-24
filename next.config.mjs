@@ -7,6 +7,11 @@ const nextConfig = {
             hostname: 'rivon-demo.myshopify.com',
             
           },
+          {
+            protocol: 'https',
+            hostname: 'plus.unsplash.com',
+            
+          },
         ],
       },
 };
