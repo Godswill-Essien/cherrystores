@@ -1,9 +1,7 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
-
 import React, { useState } from 'react'
-import { LuSlash } from "react-icons/lu";
 import { SiVisa } from "react-icons/si";
 import { RiMastercardFill } from "react-icons/ri";
 import { FaCcAmex } from "react-icons/fa6";
@@ -46,6 +44,10 @@ export default function Singleproduct() {
         }
     };
 
+
+    function changeimage() {
+
+    }
     //    VALUE
 
 
@@ -58,11 +60,11 @@ export default function Singleproduct() {
 
     function decrease() {
         if (Value >= 1) {
-            setValue(Value - 1)
+            setValue(Value + 1)
         }
     }
-5
- 
+    5
+
 
 
     return (
