@@ -2,8 +2,8 @@ import Image from 'next/image'
 import React from 'react'
 
 export default async function Newarrival() {
-
-  const res=await fetch(`http://localhost:3000/api/products`)
+const NEXT_PUBLIC_ENDPOINT="http://localhost:3002/api/"
+  const res=await fetch(`${NEXT_PUBLIC_ENDPOINT}products`)
   const data=await res.json()
 console.log("this is the data",  data)
 

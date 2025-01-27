@@ -10,6 +10,9 @@ export default function page() {
     <div>
   
       <Newarrival/>
+      {/* <Newarrival/> */}
+      <Singleproduct />
+      {/* <ProductImages/> */}
     </div>
   )
 }
