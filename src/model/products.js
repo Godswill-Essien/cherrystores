@@ -29,7 +29,7 @@ const productSchema=new mongoose.Schema({
         type:Number,
         required:true
     }
-}, (timestamps))
+}, {timestamps:true})
 
 const productModel=mongoose.models.product || mongoose.model('product', productSchema)
 

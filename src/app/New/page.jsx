@@ -20,7 +20,7 @@ export default function page() {
   const [instockErr, setInstockerr] = useState("")
 
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault()
     console.log(e)
 
@@ -67,6 +67,20 @@ export default function page() {
     }
     else {
       setProductUrlerr('')
+    }
+
+    if(productUrl !=''){
+      const res= await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}createProducts`,{
+        "type":"POST",
+        "headers":{
+
+          "content-Type":"application/json"
+        },
+        body:JSON.stringify({product,price,category,desc,productUrl,instock})
+
+      })
+
+
     }
   }
 
@@ -120,7 +134,7 @@ export default function page() {
             instockErr && (<label className="text-red-500" htmlfor="">{instockErr}</label>)
           }
 
-          <button  className='bg-green-800  text-white rounded-md px-3 py-3   hover:opacity-80 '>Summit</button>
+          <button className='bg-green-800  text-white rounded-md px-3 py-3   hover:opacity-80 '>Summit</button>
 
 
 
