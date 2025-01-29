@@ -2,6 +2,7 @@
 
 import Featuredproducts from '@/components/Featuredproducts'
 import Newarrival from '@/components/Newarrival'
+import axios from 'axios'
 import React, { useState } from 'react'
 
 export default function page() {
@@ -70,15 +71,10 @@ export default function page() {
     }
 
     if(productUrl !=''){
-      const res= await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}createProducts`,{
-        "type":"POST",
-        "headers":{
+      const res= await axios.post("http://localhost:3000/api/createProducts", {product,price,category,desc,productUrl,instock})
+       const data=await res.json()
+       console.log("this is the response: ", data )
 
-          "content-Type":"application/json"
-        },
-        body:JSON.stringify({product,price,category,desc,productUrl,instock})
-
-      })
 
 
     }
