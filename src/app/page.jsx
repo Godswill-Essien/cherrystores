@@ -8,8 +8,10 @@ export default function page() {
   return (
 
     <div>
+  
+      <Newarrival/>
       {/* <Newarrival/> */}
-      <Singleproduct />
+      
       {/* <ProductImages/> */}
     </div>
   )

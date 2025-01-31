@@ -2,6 +2,7 @@
 
 import Featuredproducts from '@/components/Featuredproducts'
 import Newarrival from '@/components/Newarrival'
+import axios from 'axios'
 import React, { useState } from 'react'
 
 export default function page() {
@@ -20,7 +21,7 @@ export default function page() {
   const [instockErr, setInstockerr] = useState("")
 
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault()
     console.log(e)
 
@@ -67,6 +68,15 @@ export default function page() {
     }
     else {
       setProductUrlerr('')
+    }
+
+    if(productUrl !=''){
+      const res= await axios.post("http://localhost:3000/api/createProducts", {product,price,category,desc,productUrl,instock})
+       const data=await res.json()
+       console.log("this is the response: ", data )
+
+
+
     }
   }
 
@@ -120,7 +130,7 @@ export default function page() {
             instockErr && (<label className="text-red-500" htmlfor="">{instockErr}</label>)
           }
 
-          <button  className='bg-green-800  text-white rounded-md px-3 py-3   hover:opacity-80 '>Summit</button>
+          <button className='bg-green-800  text-white rounded-md px-3 py-3   hover:opacity-80 '>Summit</button>
 
 
 
