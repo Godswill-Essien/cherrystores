@@ -28,7 +28,7 @@ export default function Singleproduct() {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [productData, setProductData]=useState('')
     const {id} = useParams()
-    console.log("this is the",  typeof(id))
+    console.log("this is the", id)
 
     const photos = [
         'https://rivon-demo.myshopify.com/cdn/shop/files/Fashion_06.png?v=1733810922',
@@ -69,24 +69,29 @@ export default function Singleproduct() {
         }
     }
     
-    const getSingleProd= async(id)=>{
-        try{
-            const res=await fetch(`http://localhost:3000/api/getProducts/${id}`)
-           
-            console.log("this  is the response data", res)
-            // setProductData(data)
-            // console.log(productData)
-            return data
+    const getSingleProd = async (id) => {
+        // my component needs to be mounted/loaded before i take the id from the url params
+        if (!id) return; // Prevent request if id is undefined
+    
+        try {
+            const res = await fetch(`http://localhost:3000/api/getProducts/${id}`);
+    
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+    
+            const data = await res.json(); // Parse response as JSON
+            console.log("Response Data:", data);
+            setProductData(data); // Save data to state
+        } catch (err) {
+            console.error("Error fetching product:", err.message);
         }
-        catch(err){
-            console.log(err.message)
-        }
-        }
-       
-    useEffect(()=>{
-        getSingleProd(id)
-    }, [])
-
+    };
+    
+    useEffect(() => {
+        getSingleProd(id);
+    }, [id]); // Add id as dependency
+    
     return (
         <div className=' '>
 
@@ -112,7 +117,7 @@ export default function Singleproduct() {
                             // fill
                             height="0"
                             width="900"
-                            src="https://rivon-demo.myshopify.com/cdn/shop/files/Fashion_06.png?v=1733810922" />
+                            src={productData.productUrl} />
                     </div>
 
 
@@ -153,24 +158,24 @@ export default function Singleproduct() {
                     <p className='text-gray-500 text-[14px] flex font-thin'>
                         <Link href="/"> Home</Link>
                         <p className='ml-4 mr-4 '>/</p>
-                        Slim-fit Formal Suit Blazer
+                       {productData.productName}
                     </p>
 
-                    <p className='text-zinc-900 text-[40px] font-sans font-semibold '>Slim-Fit Formal Suit Blazer</p>
-
-                    <p className='text-zinc-900 text-[16px] font-sans'>$534.00</p>
+                    <p className='text-zinc-900 text-[40px] font-sans font-semibold '>{productData.productName}</p>
+ 
+                    <p className='text-zinc-900 text-[16px] font-sans'>$ {productData.price}</p>
 
 
                     <p className='text-gray-500 text-[12px] font-sans'>Tax included.</p>
 
                     <div className='flex'>
                         <p className='text-zinc-600 font-semibold'>Vendor: </p>
-                        <p className='text-gray-500 font-sans ml-1'> Fashion</p>
+                        <p className='text-gray-500 font-sans ml-1'> {productData.category}</p>
                     </div>
 
 
                     <div className='flex flex-col text-gray-500 text-[14px] gap-1 font-thin'>
-                        <p>Only 33 Items In Stock!</p>
+                        <p>Only {productData.inStock} Items In Stock!</p>
 
 
                         <div className=' bg-zinc-100 h-[4.9px] w-[672px]'>

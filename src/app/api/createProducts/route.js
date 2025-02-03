@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 export const POST=async (res)=>{
 
     try{
-
+        // get incoming data
         const {product,price,category,desc,productUrl,instock} =await res.json()
         // call database connection
         await connectDb()

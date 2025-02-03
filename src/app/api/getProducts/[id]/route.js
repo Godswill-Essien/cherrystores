@@ -6,6 +6,7 @@ export const GET=async(req,{params})=>{
 try{
     await connectDb()
     const id= (params?.id)
+    if(!id)  return new NextResponse(JSON.stringify({msg:"no product found"}), {status:404});
 
     const prod=await productModel.findById(id)
     if(!prod){

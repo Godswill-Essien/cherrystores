@@ -16,7 +16,7 @@ export default async function Newarrival() {
       <div className="flex justify-center items-center ">
         <div ><h1 className='text-3xl font-bold flex  w-full h-full'>FEATURED PRODUCTS</h1>
 
-          <div className="w-full flex gap-5">
+          <div className="w-full flex h-screen gap-5  justify-center items-center">
             {
               data.length > 0 ?
                 data.map(res => (

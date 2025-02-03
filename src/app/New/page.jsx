@@ -3,9 +3,11 @@
 import Featuredproducts from '@/components/Featuredproducts'
 import Newarrival from '@/components/Newarrival'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 export default function page() {
+  const router=useRouter()
   const [product, setProduct] = useState("")
   const [price, setPrice] = useState("")
   const [category, setCategory] = useState("")
@@ -71,9 +73,14 @@ export default function page() {
     }
 
     if(productUrl !=''){
+      // make a request to the endpoint /api/createProducts
       const res= await axios.post("http://localhost:3000/api/createProducts", {product,price,category,desc,productUrl,instock})
-       const data=await res.json()
-       console.log("this is the response: ", data )
+
+       console.log("this is the response: ", res )
+      //  if product is addede successfully, we navigate to the home page
+       if(res.status==201){
+          router.push('/')
+       }
 
 
 
