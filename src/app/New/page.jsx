@@ -79,7 +79,7 @@ export default function page() {
        console.log("this is the response: ", res )
       //  if product is addede successfully, we navigate to the home page
        if(res.status==201){
-          router.push('/')
+          router.replace('/')
        }
 
 
@@ -145,7 +145,7 @@ export default function page() {
         </form>
 
       </div>
-      <Newarrival/>
+    
 
     </div>
   )
